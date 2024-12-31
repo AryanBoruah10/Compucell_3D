@@ -1,0 +1,5 @@
+<Simulation version="4.6.0">
+   <XMLScript Type="XMLScript">Simulation/CPM_circular.xml</XMLScript>
+   <PythonScript Type="PythonScript">Simulation/CPM_circular.py</PythonScript>
+   <Resource Type="Python">Simulation/CPM_circularSteppables.py</Resource>
+</Simulation>

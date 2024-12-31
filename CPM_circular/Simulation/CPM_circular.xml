@@ -1,0 +1,67 @@
+<CompuCell3D Revision="2" Version="4.6.0">
+   
+   <Metadata>
+      
+      <!-- Basic properties simulation -->
+      <NumberOfProcessors>1</NumberOfProcessors>
+      <DebugOutputFrequency>10</DebugOutputFrequency>
+      <!-- <NonParallelModule Name="Potts"/> -->
+   </Metadata>
+   
+   <Potts>
+      
+      <!-- Basic properties of CPM (GGH) algorithm -->
+      <Dimensions x="256" y="256" z="1"/>
+      <Steps>100000</Steps>
+      <Temperature>1.0</Temperature>
+      <NeighborOrder>2</NeighborOrder>
+      <Boundary_x>Periodic</Boundary_x>
+      <Boundary_y>Periodic</Boundary_y>
+   </Potts>
+   
+   <Plugin Name="CellType">
+      
+      <!-- Listing all cell types in the simulation -->
+      <CellType TypeId="0" TypeName="Medium"/>
+      <CellType TypeId="1" TypeName="SC"/>
+      <CellType TypeId="2" TypeName="ICM"/>
+   </Plugin>
+   
+   <Plugin Name="Volume">
+      <VolumeEnergyParameters CellType="SC" LambdaVolume="1.0" TargetVolume="25"/>
+      <VolumeEnergyParameters CellType="ICM" LambdaVolume="1.0" TargetVolume="25"/>
+   </Plugin>
+   
+   <Plugin Name="Surface">
+      <SurfaceEnergyParameters CellType="SC" LambdaSurface="1.0" TargetSurface="25"/>
+      <SurfaceEnergyParameters CellType="ICM" LambdaSurface="1.0" TargetSurface="25"/>
+   </Plugin>
+   
+   <Plugin Name="CenterOfMass">
+      
+      <!-- Module tracking center of mass of each cell -->
+   </Plugin>
+   
+   <Plugin Name="Contact">
+      <!-- Specification of adhesion energies -->
+      <Energy Type1="Medium" Type2="Medium">0.0</Energy>
+      <Energy Type1="Medium" Type2="SC">20.0</Energy>
+      <Energy Type1="Medium" Type2="ICM">2.0</Energy>
+      <Energy Type1="SC" Type2="SC">2.0</Energy>
+      <Energy Type1="SC" Type2="ICM">6.0</Energy>
+      <Energy Type1="ICM" Type2="ICM">6.0</Energy>
+      <NeighborOrder>2</NeighborOrder>
+   </Plugin>
+   
+   <Steppable Type="BlobInitializer">
+      
+      <!-- Initial layout of cells in the form of spherical (circular in 2D) blob -->
+      <Region>
+         <Center x="100" y="100" z="0"/>
+         <Radius>65</Radius>
+         <Gap>0</Gap>
+         <Width>5</Width>
+         <Types>SC,SC,SC,ICM</Types>
+      </Region>
+   </Steppable>
+</CompuCell3D>
