@@ -13,8 +13,10 @@
       <!-- Basic properties of CPM (GGH) algorithm -->
       <Dimensions x="256" y="256" z="1"/>
       <Steps>100000</Steps>
-      <Temperature>1.0</Temperature>
-      <NeighborOrder>2</NeighborOrder>
+      <!-- <Temperature>1.0</Temperature> -->
+      <Temperature>10.0</Temperature>      
+      <NeighborOrder>2</NeighborOrder> 
+      <Flip2DimRatio>1</Flip2DimRatio>      
       <Boundary_x>Periodic</Boundary_x>
       <Boundary_y>Periodic</Boundary_y>
    </Potts>
@@ -27,15 +29,20 @@
       <CellType TypeId="2" TypeName="ICM"/>
    </Plugin>
    
+   <!-- <Plugin Name="Volume"> -->
+      <!-- <VolumeEnergyParameters CellType="SC" LambdaVolume="1.0" TargetVolume="25"/> -->
+      <!-- <VolumeEnergyParameters CellType="ICM" LambdaVolume="1.0" TargetVolume="25"/> -->
+   <!-- </Plugin> -->
+   
    <Plugin Name="Volume">
-      <VolumeEnergyParameters CellType="SC" LambdaVolume="1.0" TargetVolume="25"/>
-      <VolumeEnergyParameters CellType="ICM" LambdaVolume="1.0" TargetVolume="25"/>
+       <TargetVolume>45</TargetVolume>
+       <LambdaVolume>25.0</LambdaVolume>
    </Plugin>
    
-   <Plugin Name="Surface">
-      <SurfaceEnergyParameters CellType="SC" LambdaSurface="1.0" TargetSurface="25"/>
-      <SurfaceEnergyParameters CellType="ICM" LambdaSurface="1.0" TargetSurface="25"/>
-   </Plugin>
+   <!-- <Plugin Name="Surface"> -->
+      <!-- <SurfaceEnergyParameters CellType="SC" LambdaSurface="1.0" TargetSurface="25"/> -->
+      <!-- <SurfaceEnergyParameters CellType="ICM" LambdaSurface="1.0" TargetSurface="25"/> -->
+   <!-- </Plugin> -->
    
    <Plugin Name="CenterOfMass">
       
@@ -44,24 +51,26 @@
    
    <Plugin Name="Contact">
       <!-- Specification of adhesion energies -->
-      <Energy Type1="Medium" Type2="Medium">0.0</Energy>
-      <Energy Type1="Medium" Type2="SC">20.0</Energy>
-      <Energy Type1="Medium" Type2="ICM">2.0</Energy>
+      <Energy Type1="Medium" Type2="Medium">60.0</Energy>
+      <Energy Type1="Medium" Type2="SC">16.0</Energy>
+      <Energy Type1="Medium" Type2="ICM">40.0</Energy>
       <Energy Type1="SC" Type2="SC">2.0</Energy>
-      <Energy Type1="SC" Type2="ICM">6.0</Energy>
-      <Energy Type1="ICM" Type2="ICM">6.0</Energy>
-      <NeighborOrder>2</NeighborOrder>
+      <Energy Type1="SC" Type2="ICM">10.0</Energy>
+      <Energy Type1="ICM" Type2="ICM">0.0</Energy>
+      <NeighborOrder>30</NeighborOrder>
    </Plugin>
    
    <Steppable Type="BlobInitializer">
       
       <!-- Initial layout of cells in the form of spherical (circular in 2D) blob -->
       <Region>
-         <Center x="100" y="100" z="0"/>
-         <Radius>65</Radius>
+         <Center x="150" y="150" z="0"/>
+         <Radius>40</Radius>
          <Gap>0</Gap>
          <Width>5</Width>
-         <Types>SC,SC,SC,ICM</Types>
+         <Types>SC,SC,SC,SC,ICM,ICM,ICM</Types>
       </Region>
    </Steppable>
+
 </CompuCell3D>
+
