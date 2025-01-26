@@ -1,0 +1,408 @@
+<CompuCell3D Revision="2" Version="4.6.0">
+   
+   <Metadata>
+      
+      <!-- Basic properties simulation -->
+      <NumberOfProcessors>1</NumberOfProcessors>
+      <DebugOutputFrequency>10</DebugOutputFrequency>
+      <!-- <NonParallelModule Name="Potts"/> -->
+   </Metadata>
+   
+   <Potts>
+      
+      <!-- Basic properties of CPM (GGH) algorithm -->
+      <Dimensions x="400" y="200" z="1"/>
+      <Steps>100000</Steps>
+      <Temperature>10.0</Temperature>
+      <NeighborOrder>1</NeighborOrder>
+      <Boundary_x>Periodic</Boundary_x>
+   </Potts>
+   
+   <Plugin Name="CellType">
+      
+      <!-- Listing all cell types in the simulation -->
+      <CellType TypeId="0" TypeName="Medium"/>
+      <CellType TypeId="1" TypeName="Apical"/>
+      <CellType TypeId="2" TypeName="Lateral"/>
+      <CellType TypeId="3" TypeName="Basal"/>
+      <CellType TypeId="4" TypeName="ECM"/>
+   </Plugin>
+   
+   <Plugin Name="Volume">
+      <VolumeEnergyParameters CellType="Apical" LambdaVolume="2.0" TargetVolume="50"/>
+      <VolumeEnergyParameters CellType="Lateral" LambdaVolume="2.0" TargetVolume="50"/>
+      <VolumeEnergyParameters CellType="Basal" LambdaVolume="2.0" TargetVolume="50"/>
+      <VolumeEnergyParameters CellType="ECM" LambdaVolume="2.0" TargetVolume="1600"/>
+      <!-- <VolumeEnergyParameters CellType="ECM" LambdaVolume="2.0" TargetVolume="50"/> base code>  -->
+   </Plugin>
+   
+   <Plugin Name="CenterOfMass">
+      
+      <!-- Module tracking center of mass of each cell -->
+   </Plugin>
+   
+   <Plugin Name="NeighborTracker">
+      
+      <!-- Module tracking neighboring cells of each cell -->
+   </Plugin>
+   
+   <Plugin Name="Contact">
+      <!-- Specification of adhesion energies -->
+      <!-- <Energy Type1="Medium" Type2="Medium">10.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="Apical">10.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="Lateral">10.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="Basal">10.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="ECM">10.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="Apical">10.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="Lateral">10.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="Basal">10.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="ECM">10.0</Energy> -->
+      <!-- <Energy Type1="Lateral" Type2="Lateral">10.0</Energy> -->
+      <!-- <Energy Type1="Lateral" Type2="Basal">10.0</Energy> -->
+      <!-- <Energy Type1="Lateral" Type2="ECM">10.0</Energy> -->
+      <!-- <Energy Type1="Basal" Type2="Basal">10.0</Energy> -->
+      <!-- <Energy Type1="Basal" Type2="ECM">10.0</Energy> -->
+      <!-- <Energy Type1="ECM" Type2="ECM">10.0</Energy> -->
+      
+      <Energy Type1="Medium" Type2="Medium">0.0</Energy>
+      <Energy Type1="Medium" Type2="Apical">5.0</Energy>
+      <Energy Type1="Medium" Type2="Lateral">10.0</Energy>
+      <Energy Type1="Medium" Type2="Basal">20.0</Energy>
+      <Energy Type1="Medium" Type2="ECM">20.0</Energy>
+      <Energy Type1="Apical" Type2="Apical">5.0</Energy>
+      <Energy Type1="Apical" Type2="Lateral">10.0</Energy>
+      <Energy Type1="Apical" Type2="Basal">10.0</Energy>
+      <Energy Type1="Apical" Type2="ECM">20.0</Energy>
+      <Energy Type1="Lateral" Type2="Lateral">5.0</Energy>
+      <Energy Type1="Lateral" Type2="Basal">10.0</Energy>
+      <Energy Type1="Lateral" Type2="ECM">10.0</Energy>
+      <Energy Type1="Basal" Type2="Basal">5.0</Energy>
+      <Energy Type1="Basal" Type2="ECM">5.0</Energy>
+      <Energy Type1="ECM" Type2="ECM">0.0</Energy>
+      <NeighborOrder>4</NeighborOrder>
+   </Plugin>
+   
+   <Plugin Name="ContactInternal">
+      <!-- Specification of internal adhesion energies -->
+      <!-- <Energy Type1="Medium" Type2="Medium">0.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="Apical">2.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="Lateral">2.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="Basal">0.0</Energy> -->
+      <!-- <Energy Type1="Medium" Type2="ECM">0.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="Apical">2.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="Lateral">10.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="Basal">10.0</Energy> -->
+      <!-- <Energy Type1="Apical" Type2="ECM">10.0</Energy> -->
+      <!-- <Energy Type1="Lateral" Type2="Lateral">10.0</Energy> -->
+      <!-- <Energy Type1="Lateral" Type2="Basal">10.0</Energy> -->
+      <!-- <Energy Type1="Lateral" Type2="ECM">10.0</Energy> -->
+      <!-- <Energy Type1="Basal" Type2="Basal">10.0</Energy> -->
+      <!-- <Energy Type1="Basal" Type2="ECM">10.0</Energy> -->
+      <!-- <Energy Type1="ECM" Type2="ECM">10.0</Energy> -->
+      
+      <Energy Type1="Apical" Type2="Apical">0.0</Energy>
+      <Energy Type1="Apical" Type2="Lateral">2.0</Energy>
+      <Energy Type1="Apical" Type2="Basal">2.0</Energy>
+      <Energy Type1="Apical" Type2="ECM">0.0</Energy>
+      <Energy Type1="Lateral" Type2="Lateral">0.0</Energy>
+      <Energy Type1="Lateral" Type2="Basal">2.0</Energy>
+      <Energy Type1="Lateral" Type2="ECM">0.0</Energy>
+      <Energy Type1="Basal" Type2="Basal">0.0</Energy>
+      <Energy Type1="Basal" Type2="ECM">0.0</Energy>
+      <Energy Type1="ECM" Type2="ECM">0.0</Energy>
+      
+      
+      <NeighborOrder>4</NeighborOrder>
+   </Plugin>
+   
+   <Plugin Name="FocalPointPlasticity">
+      
+      <!-- Specification of focal point junctions -->
+      <!-- We separetely specify links between members of same cluster - InternalParameters and members of different clusters Parameters. When not using compartmental  cells comment out InternalParameters specification -->
+      <!-- To modify FPP links individually for each cell pair uncomment line below -->
+      <Local/>
+      <!-- Note that even though you may manipulate lambdaDistance, targetDistance and maxDistance using Python you still need to set activation energy from XML level -->
+      <!-- See CC3D manual for details on FPP plugin  -->
+      
+      <!-- <Parameters Type1="Medium" Type2="Medium"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="Apical"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="Lateral"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <Parameters Type1="Apical" Type2="Apical">
+         <!-- <Lambda>10</Lambda> -->
+         <Lambda>10</Lambda>
+         <ActivationEnergy>-50</ActivationEnergy>
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <TargetDistance>0</TargetDistance>
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <MaxDistance>20</MaxDistance>
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+         <MaxNumberOfJunctions NeighborOrder="1">0</MaxNumberOfJunctions>
+      </Parameters>
+      
+      <!-- <Parameters Type1="Apical" Type2="Lateral"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Apical" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Apical" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Lateral" Type2="Lateral"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Lateral" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Lateral" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Basal" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Basal" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="ECM" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="Medium"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="Apical"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="Lateral"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Apical" Type2="Apical"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Apical" Type2="Lateral"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Apical" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Apical" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Lateral" Type2="Lateral"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Lateral" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Lateral" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Basal" Type2="Basal"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Basal" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="ECM" Type2="ECM"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <NeighborOrder>1</NeighborOrder>
+   </Plugin>
+   
+   <Steppable Type="UniformInitializer">
+      
+      <!-- Initial layout of cells in the form of rectangular slab -->
+      <Region>
+         <BoxMin x="0" y="0" z="0"/>
+         <BoxMax x="400" y="50" z="1"/>
+         <Gap>0</Gap>
+         <Width>50</Width>
+         <!-- <Width>7</Width> base code> -->
+         <Types>ECM</Types>
+      </Region>
+      
+      <Region>
+         <BoxMin x="0" y="50" z="0"/>
+         <BoxMax x="400" y="55" z="1"/>
+         <Gap>0</Gap>
+         <Width>7</Width>
+         <Types>Basal</Types>
+      </Region>
+      <Region>
+         <BoxMin x="0" y="55" z="0"/>
+         <BoxMax x="400" y="60" z="1"/>
+         <Gap>0</Gap>
+         <Width>7</Width>
+         <Types>Lateral</Types>
+      </Region>
+      <Region>
+         <BoxMin x="0" y="60" z="0"/>
+         <BoxMax x="400" y="65" z="1"/>
+         <Gap>0</Gap>
+         <Width>7</Width>
+         <Types>Apical</Types>
+      </Region>
+   </Steppable>
+</CompuCell3D>
