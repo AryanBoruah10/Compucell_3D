@@ -1,0 +1,5 @@
+<Simulation version="4.7.0">
+   <XMLScript Type="XMLScript">Simulation/stroma_matrix_1.xml</XMLScript>
+   <PythonScript Type="PythonScript">Simulation/stroma_matrix_1.py</PythonScript>
+   <Resource Type="Python">Simulation/stroma_matrix_1Steppables.py</Resource>
+</Simulation>
