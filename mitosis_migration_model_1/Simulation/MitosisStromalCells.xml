@@ -1,0 +1,363 @@
+<CompuCell3D Revision="2" Version="4.6.0">
+   
+   <Metadata>
+      
+      <!-- Basic properties simulation -->
+      <NumberOfProcessors>1</NumberOfProcessors>
+      <DebugOutputFrequency>10</DebugOutputFrequency>
+      <!-- <NonParallelModule Name="Potts"/> -->
+   </Metadata>
+   
+   <Potts>
+      
+      <!-- Basic properties of CPM (GGH) algorithm -->
+      <Dimensions x="600" y="220" z="1"/>
+      <Steps>100000</Steps>
+      <Temperature>10.0</Temperature>
+      <NeighborOrder>1</NeighborOrder>
+      <Boundary_x>Periodic</Boundary_x>
+   </Potts>
+   
+   <Plugin Name="CellType">
+      
+      <!-- Listing all cell types in the simulation -->
+      <CellType TypeId="0" TypeName="Medium"/>
+      <CellType TypeId="1" TypeName="s1"/>
+      <CellType TypeId="2" TypeName="e1"/>
+      <CellType TypeId="3" TypeName="e2"/>
+      <CellType TypeId="4" TypeName="s2"/>
+   </Plugin>
+   
+   <Plugin Name="Volume"/>
+      <VolumeEnergyParameters CellType="e1" LambdaVolume="2.0" TargetVolume="50"/>
+      <VolumeEnergyParameters CellType="e2" LambdaVolume="2.0" TargetVolume="50"/>
+      <VolumeEnergyParameters CellType="s1" LambdaVolume="2.0" TargetVolume="50"/>
+      <VolumeEnergyParameters CellType="s2" LambdaVolume="2.0" TargetVolume="50"/>
+   
+   <Plugin Name="CenterOfMass">
+      
+      <!-- Module tracking center of mass of each cell -->
+   </Plugin>
+   
+   <Plugin Name="NeighborTracker">
+      
+      <!-- Module tracking neighboring cells of each cell -->
+   </Plugin>
+   
+   <Plugin Name="Contact">
+      <!-- Specification of adhesion energies -->
+      <Energy Type1="Medium" Type2="Medium">10.0</Energy>
+      <Energy Type1="Medium" Type2="s1">10.0</Energy>
+      <Energy Type1="Medium" Type2="e1">10.0</Energy>
+      <Energy Type1="Medium" Type2="e2">10.0</Energy>
+      <Energy Type1="Medium" Type2="s2">10.0</Energy>
+      <Energy Type1="s1" Type2="s1">10.0</Energy>
+      <Energy Type1="s1" Type2="e1">10.0</Energy>
+      <Energy Type1="s1" Type2="e2">10.0</Energy>
+      <Energy Type1="s1" Type2="s2">10.0</Energy>
+      <Energy Type1="e1" Type2="e1">5.0</Energy>
+      <Energy Type1="e1" Type2="e2">50.0</Energy>
+      <Energy Type1="e1" Type2="s2">10.0</Energy>
+      <Energy Type1="e2" Type2="e2">10.0</Energy>
+      <Energy Type1="e2" Type2="s2">10.0</Energy>
+      
+      <Energy Type1="s2" Type2="s2">10.0</Energy>
+      <NeighborOrder>4</NeighborOrder>
+   </Plugin>
+
+   
+   <Plugin Name="FocalPointPlasticity">
+      
+      <!-- Specification of focal point junctions -->
+      <!-- We separetely specify links between members of same cluster - InternalParameters and members of different clusters Parameters. When not using compartmental  cells comment out InternalParameters specification -->
+      <!-- To modify FPP links individually for each cell pair uncomment line below -->
+      <Local/>
+      <!-- Note that even though you may manipulate lambdaDistance, targetDistance and maxDistance using Python you still need to set activation energy from XML level -->
+      <!-- See CC3D manual for details on FPP plugin  -->
+      
+      <!-- <Parameters Type1="Medium" Type2="Medium"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="s1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="e1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="e2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="Medium" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="s1" Type2="s1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="s1" Type2="e1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="s1" Type2="e2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="s1" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <Parameters Type1="e1" Type2="e1">
+         <Lambda>10</Lambda>
+         <ActivationEnergy>-50</ActivationEnergy>
+         <TargetDistance>7</TargetDistance>
+         <MaxDistance>20</MaxDistance>
+         <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions>
+      </Parameters>
+      
+      <!-- <Parameters Type1="e1" Type2="e2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="e1" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <Parameters Type1="e2" Type2="e2">
+         <Lambda>30</Lambda>
+         <ActivationEnergy>-50</ActivationEnergy>
+         <TargetDistance>7</TargetDistance>
+         <MaxDistance>20</MaxDistance>
+         <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions>
+      </Parameters>
+      
+      <!-- <Parameters Type1="e2" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <Parameters Type1="s2" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </Parameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="Medium"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="s1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="e1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="e2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="Medium" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="s1" Type2="s1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="s1" Type2="e1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="s1" Type2="e2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="s1" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="e1" Type2="e1"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="e1" Type2="e2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="e1" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="e2" Type2="e2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="e2" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <!-- <InternalParameters Type1="s2" Type2="s2"> -->
+         <!-- <Lambda>10</Lambda> -->
+         <!-- <ActivationEnergy>-50</ActivationEnergy> -->
+         <!-- <TargetDistance>7</TargetDistance> -->
+         <!-- <MaxDistance>20</MaxDistance> -->
+         <!-- <MaxNumberOfJunctions NeighborOrder="1">1</MaxNumberOfJunctions> -->
+      <!-- </InternalParameters> -->
+      
+      <NeighborOrder>1</NeighborOrder>
+   </Plugin>
+   
+   
+   <Steppable Type="UniformInitializer">
+      
+      <!-- Initial layout of cells in the form of rectangular slab -->
+      <Region>
+         <BoxMin x="0" y="0" z="0"/>
+         <BoxMax x="600" y="100" z="1"/>
+         <Gap>0</Gap>
+         <Width>7</Width>
+         <Types>s1,</Types>
+      </Region>
+      
+      <Region>
+         <BoxMin x="0" y="100" z="0"/>
+         <BoxMax x="600" y="105" z="1"/>
+         <Gap>0</Gap>
+         <Width>7</Width>
+         <Types>e2</Types>
+      </Region>
+      
+      <Region>
+         <BoxMin x="0" y="120" z="0"/>
+         <BoxMax x="600" y="125" z="1"/>
+         <Gap>0</Gap>
+         <Width>7</Width>
+         <Types>e2</Types>
+      </Region>
+      <Region>
+         <BoxMin x="0" y="125" z="0"/>
+         <BoxMax x="600" y="220" z="1"/>
+         <Gap>0</Gap>
+         <Width>7</Width>
+         <Types>s1</Types>
+      </Region>
+   </Steppable>
+   
+   
+   <Plugin Name="ExternalPotential">
+        <ExternalPotentialParameters id="force" CellType="s2" x="0" y="0" z="0"/>
+   </Plugin>
+   
+   
+</CompuCell3D>
