@@ -1,0 +1,25 @@
+
+
+Even if I try to calculate the muscle cell length in the x direction it will count based in pixels 
+
+So even if the muscle gets squeezed at the bottom part such that it is getting more triangular, the upper part of the 
+muscle is still the same length as before. in the upper part the muscle x length is still conserved.
+
+## So the area is not changing i.e not increasing or decreasing. The area is conserved. 
+
+## Now since in reality its a 3d object, the squeezing will result in elongation in the z-direction. So not necessarily it will elongate 
+or deform in the y direction if squeezed from x-direction 
+
+##
+ if a cell is changing shape from one msc to the other in cc3d then possibly what might be happening. Because area is conserved.  
+
+ 
+==================================================================================================================================== 
+Inertia tensor in CompuCell3D is a mathematical way of describing how the shape and mass of a cell are spread around its center. It doesn’t 
+tell you where the cell is. It tells you how its shape is distributed relative to the center
+
+the cell changes shape, the position of the center of mass moves.
+
+If center of mass changes the moment of inertia also changes. 
+
+====================================================================================================================================
